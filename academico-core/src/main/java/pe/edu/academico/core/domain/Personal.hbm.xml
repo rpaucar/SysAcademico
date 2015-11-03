@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/06/2012 10:38:16 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="pe.edu.academico.core.domain.Personal" table="Personal">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="personaId" type="java.lang.Long">
+			<column name="personaId"/>
+		</property>
+		
+		<property name="rolId" type="java.lang.Long">
+			<column name="rolId"/>
+		</property>
+		<property name="estado" type="string">
+			<column name="estado" length="50" />
+		</property>
+		
+		<!-- electionId -->
+		<!-- studentId -->
+		<!-- status -->
+
+<!--         <many-to-one name="statusCompetitor" class="org.elecciones.core.domain.StatusCompetitor" lazy="false" fetch="select"> -->
+<!--             <column name="status" /> -->
+<!--         </many-to-one> -->
+        
+		<!-- auditory -->
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/06/2012 10:38:16 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="pe.edu.academico.core.domain.Alumno" table="Alumno">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="personaId" type="java.lang.Long">
+			<column name="personaId"/>
+		</property>
+		
+		<property name="codigo_alumno" type="string">
+			<column name="codigo_alumno" length="50" />
+		</property>
+		<property name="usuario_creacion" type="string">
+			<column name="usuario_creacion" length="20" />
+		</property>
+		<property name="usuario_actualizacion" type="string">
+			<column name="usuario_actualizacion" length="20" />
+		</property>
+		<property name="ip_creacion" type="string">
+			<column name="ip_creacion" length="20" />
+		</property>
+		<property name="ip_actualizacion" type="string">
+			<column name="ip_actualizacion" length="20" />
+		</property>
+
+		<!-- electionId -->
+		<!-- studentId -->
+		<!-- status -->
+
+<!--         <many-to-one name="statusCompetitor" class="org.elecciones.core.domain.StatusCompetitor" lazy="false" fetch="select"> -->
+<!--             <column name="status" /> -->
+<!--         </many-to-one> -->
+        
+		<!-- auditory -->
+
+		<property name="fecha_creacion" type="timestamp">
+			<column name="fecha_creacion" length="20" />
+		</property>
+		<property name="fecha_actualizacion" type="timestamp">
+			<column name="fecha_actualizacion" length="20" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

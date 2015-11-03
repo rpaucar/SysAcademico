@@ -3,8 +3,7 @@ package pe.edu.academico.core.dao;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import pe.edu.academico.core.domain.BaseEntity;
 import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -13,70 +12,113 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateSystemException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import pe.edu.academico.core.domain.BaseEntity;
-
 /**
  * 
- * @author rogersys
- * 
+ * @author ocalsin
+ *
  */
 
 public class BaseDAOHibernate extends HibernateDaoSupport {
-
-	/** Logger available to subclasses */
-	 protected final Log logger = LogFactory.getLog(getClass());
-
-	public BaseDAOHibernate() {
+	
+	public BaseDAOHibernate(){
 	}
-
+	
 	/**
-	 * When use parameter arrays to limit the search, usually use the 'like'
-	 * condition. To use this with arrays, we need, first, convert the parameter
-	 * to the '%param%' form to be correctly replaced in the Hibernate parsin
-	 * process.
-	 * 
+	 * When use parameter arrays to limit the search, 
+	 * usually use the 'like' condition. To use this 
+	 * with arrays, we need, first, convert the parameter 
+	 * to the '%param%' form to be correctly replaced in 
+	 * the Hibernate parsin process.
 	 * @param param
 	 * @return
 	 */
-	protected String likeParameter(String param) {
+	protected String likeParameter(String param){
 		return "%" + param + "%";
 	}
-
-	public <T> T findById(Class<T> entityClass, Long id)
-			throws DataAccessException {
+	
+	public <T> T findById(Class<T> entityClass, Long id) throws DataAccessException {
 		return (T) getHibernateTemplate().get(entityClass, id);
 	}
 
 	public void save(BaseEntity entity) throws DataAccessException {
 		Date systemDate = new Date();
+		entity.setDateLastUpdated(systemDate);
 		if (entity.getId() == null || entity.getDateCreated() == null) {
 			entity.setDateCreated(systemDate);
+			getHibernateTemplate().save(entity);
+		}else{
+			try {
+				getHibernateTemplate().update(entity);
+			}catch (HibernateSystemException systemExc) {
+				if (systemExc.getRootCause() instanceof NonUniqueObjectException) {
+					getHibernateTemplate().merge(entity);
+				} else {
+					logger.info("0%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+					systemExc.printStackTrace();
+					logger.info("1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+					throw systemExc;
+				}
+			}
 		}
+		
+//		try {
+//			getHibernateTemplate().save(entity);
+//		}catch (HibernateSystemException systemExc) {
+//			if (systemExc.getRootCause() instanceof NonUniqueObjectException) {
+//				getHibernateTemplate().merge(entity);
+//			} else {
+////				logger.info("0%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+//				systemExc.printStackTrace();
+////				logger.info("1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+//				throw systemExc;
+//			}
+//		}
+	}
+	
+	
+	public void update(BaseEntity entity) throws DataAccessException {
+		Date systemDate = new Date();
 		entity.setDateLastUpdated(systemDate);
 		try {
-			getHibernateTemplate().saveOrUpdate(entity);
-		} catch (HibernateSystemException systemExc) {
+			getHibernateTemplate().update(entity);
+		}catch (HibernateSystemException systemExc) {
 			if (systemExc.getRootCause() instanceof NonUniqueObjectException) {
 				getHibernateTemplate().merge(entity);
 			} else {
-				// logger.info("0%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+				logger.info("0%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 				systemExc.printStackTrace();
-				// logger.info("1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+				logger.info("1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 				throw systemExc;
 			}
 		}
 	}
-
+	
+	
 	public void saveObject(Object entity) throws DataAccessException {
 		try {
 			getHibernateTemplate().saveOrUpdate(entity);
 		} catch (HibernateSystemException systemExc) {
 			if (systemExc.getRootCause() instanceof NonUniqueObjectException) {
-				getHibernateTemplate().merge(entity);
+				getHibernateTemplate().merge(entity);			
 			} else {
-				// logger.info("0%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+//				logger.info("0%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 				systemExc.printStackTrace();
-				// logger.info("1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+//				logger.info("1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+				throw systemExc;
+			}
+		}
+	}
+	
+	public void saveObjectAll(List<?> entities) throws DataAccessException {
+		try {
+			getHibernateTemplate().saveOrUpdateAll(entities);
+		} catch (HibernateSystemException systemExc) {
+			if (systemExc.getRootCause() instanceof NonUniqueObjectException) {
+				getHibernateTemplate().merge(entities);			
+			} else {
+//				logger.info("0%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+				systemExc.printStackTrace();
+//				logger.info("1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 				throw systemExc;
 			}
 		}
@@ -88,108 +130,101 @@ public class BaseDAOHibernate extends HibernateDaoSupport {
 
 	@SuppressWarnings(value = "unchecked")
 	public <T> List<T> find(Class<T> entityClass, String queryString) {
+//		if (logger.isDebugEnabled()){
+//			logger.debug("FIND :: " + queryString);
+//		}
 		return (List<T>) getHibernateTemplate().find(queryString);
 	}
-
+	
 	@SuppressWarnings(value = "unchecked")
-	public <T> List<T> find(Class<T> entityClass, String queryString,
-			Object[] params) {
+	public <T> List<T> find(Class<T> entityClass, String queryString, Object[] params) {
+//		if (logger.isDebugEnabled()){
+//			logger.debug("FIND :: " + queryString);
+//		}
 		return (List<T>) getHibernateTemplate().find(queryString, params);
 	}
-
+	
 	@SuppressWarnings(value = "unchecked")
 	public <T> T findUniqueResult(String queryString) {
 		Session session = getDaoSession();
 		Query query = session.createQuery(queryString);
 		query.setFirstResult(0);
 		query.setMaxResults(1);
-		return (T) query.uniqueResult();
+		return (T)query.uniqueResult();
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findSQLData(String queryString, Class<T> entityClass) {
+	public <T> List<T> findSQLData(String queryString, Class<T> entityClass){
 		Session session = getDaoSession();
-		Query query = session.createSQLQuery(queryString)
-				.addEntity(entityClass);
+		Query query = session.createSQLQuery(queryString).addEntity(entityClass);
 		flushing(session);
-		return (List<T>) query.list();
+		return (List<T>)query.list();
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public <T> T findSQLDataUniqueResult(String queryString,
-			Class<T> entityClass) {
+	public <T> T findSQLDataUniqueResult(String queryString, Class<T> entityClass){
 		Session session = getDaoSession();
-		Query query = session.createSQLQuery(queryString)
-				.addEntity(entityClass);
+		Query query = session.createSQLQuery(queryString).addEntity(entityClass);
 		query.setFirstResult(0);
 		query.setMaxResults(1);
 		flushing(session);
-		return (T) query.uniqueResult();
+		return (T)query.uniqueResult();
 	}
 
-	public <T> T firstIfExist(List<T> list) {
-		if (list == null || list.size() <= 0) {
+	public <T> T firstIfExist(List<T> list){
+        if (list==null || list.size()<=0) {
 			return null;
 		}
-		return list.get(0);
-	}
-
-	@SuppressWarnings(value = "unchecked")
-	public <T> T findFirst(Class<T> entityClass, String queryString) {
-		return firstIfExist((List<T>) getHibernateTemplate().find(queryString));
-	}
-
-	@SuppressWarnings(value = "unchecked")
-	public <T> T findFirst(Class<T> entityClass, String queryString,
-			Object... params) {
-		return firstIfExist((List<T>) getHibernateTemplate().find(queryString,
-				params));
-	}
-
-	@SuppressWarnings(value = "unchecked")
-	public <T> List<T> findList(Class<T> entityClass, String queryString,
-			Object... params) {
+        return list.get(0);
+    }
+   
+    @SuppressWarnings(value = "unchecked")
+    public <T> T findFirst(Class<T> entityClass, String queryString) {
+        return firstIfExist((List<T>) getHibernateTemplate().find(queryString));
+    }
+    
+    @SuppressWarnings(value = "unchecked")
+    public <T> T findFirst(Class<T> entityClass, String queryString, Object...params) {
+        return firstIfExist((List<T>) getHibernateTemplate().find(queryString, params));
+    }
+    
+    @SuppressWarnings(value = "unchecked")
+	public <T> List<T> findList(Class<T> entityClass, String queryString, Object ... params) {
+//		if (logger.isDebugEnabled()){
+//			logger.debug("FIND :: " + queryString);
+//		}
 		return (List<T>) getHibernateTemplate().find(queryString, params);
 	}
-
-	public void initialize(Object proxy) {
+	
+	public void initialize(Object proxy){
 		getHibernateTemplate().initialize(proxy);
 	}
-
+	
 	public SQLQuery getSQLQuery(String sql) {
 		Session session = getDaoSession();
-		return session.createSQLQuery(sql);
+		return session.createSQLQuery(sql);		
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public List findSqlList(SQLQuery query) {
 		Session session = getDaoSession();
 		flushing(session);
-		return query.list();
+		return query.list();		
 	}
-
-	private void flushing(Session session) {
-		// ( from:
-		// http://docs.jboss.org/hibernate/orm/3.3/reference/es-ES/html/objectstate.html
-		// )
-		// Except when you explicitly flush(), there are absolutely no
-		// guarantees about when the Session executes the JDBC calls,
-		// only the order in which they are executed.
-		// However, Hibernate does guarantee that the Query.list(..) will never
-		// return stale or incorrect data.
+	
+	private void flushing(Session session){
+		//( from:  http://docs.jboss.org/hibernate/orm/3.3/reference/es-ES/html/objectstate.html )
+		//Except when you explicitly flush(), there are absolutely no guarantees about when the Session executes the JDBC calls, 
+		//only the order in which they are executed. 
+		//However, Hibernate does guarantee that the Query.list(..) will never return stale or incorrect data.
 		session.flush();
 	}
-
-	private Session getDaoSession() {
-		// ( from getSession() API )
-		// In general, it is recommended to use HibernateTemplate, either with
-		// the provided convenience operations or with a custom
-		// HibernateCallback
-		// that provides you with a Session to work on. HibernateTemplate will
-		// care for all resource management and for proper exception conversion.
-		Session session = getHibernateTemplate().getSessionFactory()
-				.getCurrentSession();
-		return session;
+	
+	private Session getDaoSession(){
+		//( from getSession() API )
+		//In general, it is recommended to use HibernateTemplate, either with the provided convenience operations or with a custom HibernateCallback 
+		//that provides you with a Session to work on. HibernateTemplate will care for all resource management and for proper exception conversion.
+		Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+		return session;		
 	}
-
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/06/2012 10:38:16 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="pe.edu.academico.core.domain.Persona" table="Persona">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		
+		<property name="nombres" type="string">
+			<column name="nombres" length="50" />
+		</property>
+		<property name="ap_paterno" type="string">
+			<column name="ap_paterno" length="50" />
+		</property>
+		<property name="ap_materno" type="string">
+			<column name="ap_materno" length="50" />
+		</property>
+		<property name="dni" type="string">
+			<column name="dni" length="8" />
+		</property>
+
+		<!-- electionId -->
+		<!-- studentId -->
+		<!-- status -->
+
+<!--         <many-to-one name="statusCompetitor" class="org.elecciones.core.domain.StatusCompetitor" lazy="false" fetch="select"> -->
+<!--             <column name="status" /> -->
+<!--         </many-to-one> -->
+        
+		<!-- auditory -->
+
+		<property name="fecha_nac" type="timestamp">
+			<column name="fecha_nac" length="20" />
+		</property>
+		<property name="sexo" type="string">
+			<column name="sexo" length="20" />
+		</property>
+		<property name="estado" type="string">
+			<column name="estado" length="10" />
+		</property>
+		<property name="tipo_nacionalidad" type="string">
+			<column name="tipo_nacionalidad" length="50" />
+		</property>
+		<property name="nacionalidad" type="string">
+			<column name="nacionalidad" length="50" />
+		</property>
+		<property name="celular" type="string">
+			<column name="celular" length="9" />
+		</property>
+		<property name="direccion" type="string">
+			<column name="direccion" length="50" />
+		</property>
+		<property name="ip_creacion" type="string">
+			<column name="ip_creacion" length="20" />
+		</property>
+		<property name="ip_actualizacion" type="string">
+			<column name="ip_actualizacion" length="20" />
+		</property>
+		<property name="usuario_creacion" type="string">
+			<column name="usuario_creacion" length="20" />
+		</property>
+		<property name="usuario_actualizacion" type="string">
+			<column name="usuario_actualizacion" length="20" />
+		</property>
+		<property name="fecha_creacion" type="timestamp">
+			<column name="fecha_creacion" length="20" />
+		</property>
+		<property name="fecha_actualizacion" type="timestamp">
+			<column name="fecha_actualizacion" length="20" />
+		</property>
+		<property name="email" type="string">
+			<column name="email" length="50" />
+		</property>
+
+	</class>
+</hibernate-mapping>

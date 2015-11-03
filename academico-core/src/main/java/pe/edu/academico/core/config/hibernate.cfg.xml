@@ -4,8 +4,22 @@
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<mapping resource="pe/edu/academico/core/domain/BaseType.hbm.xml" />
-		<mapping resource="pe/edu/academico/core/domain/Customer.hbm.xml" />
-	</session-factory>
 
+		<!-- Common -->
+		<mapping resource="pe/edu/academico/core/domain/Persona.hbm.xml" />
+		<mapping resource="pe/edu/academico/core/domain/Alumno.hbm.xml" />
+		<mapping resource="pe/edu/academico/core/domain/Personal.hbm.xml" />
+		<mapping resource="pe/edu/academico/core/domain/Responsable.hbm.xml" />
+		<mapping resource="pe/edu/academico/core/domain/Nivel.hbm.xml" />
+		<mapping resource="pe/edu/academico/core/domain/Seccion.hbm.xml" />
+		<mapping resource="pe/edu/academico/core/domain/Turno.hbm.xml" />
+		<mapping resource="pe/edu/academico/core/domain/Rol.hbm.xml" />
+		<mapping resource="pe/edu/academico/core/domain/Especialidad.hbm.xml" />
+<!-- 		<mapping resource="pe/edu/academico/core/domain/Turno.hbm.xml" /> -->
+<!-- 		<mapping resource="pe/edu/academico/core/domain/Turno.hbm.xml" /> -->
+<!-- 		<mapping resource="pe/edu/academico/core/domain/Turno.hbm.xml" /> -->
+<!-- 		<mapping resource="pe/edu/academico/core/domain/Turno.hbm.xml" /> -->
+		
+	</session-factory>
+	
 </hibernate-configuration>

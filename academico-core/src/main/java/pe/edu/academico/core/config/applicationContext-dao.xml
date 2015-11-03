@@ -7,7 +7,8 @@
            http://www.directwebremoting.org/schema/spring-dwr
            http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
 			<value>${hibernate.connection.driver_class}</value>
 		</property>
@@ -22,12 +23,14 @@
 		</property>
 	</bean>
 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-   		<property name="dataSource" ref="dataSource"/>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
 		<property name="configLocations">
 			<list>
 				<value>
-					classpath:pe/edu/academico/core/config/hibernate.cfg.xml
+					classpath:/pe/edu/academico/core/config/hibernate.cfg.xml
 				</value>
 			</list>
 		</property>
@@ -37,9 +40,9 @@
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
 				<prop key="hibernate.c3p0.minPoolSize">${hibernate.c3p0.minPoolSize}</prop>
-			    <prop key="hibernate.c3p0.maxPoolSize">${hibernate.c3p0.maxPoolSize}</prop>
-			    <prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop>
-			    <prop key="hibernate.c3p0.max_statement">${hibernate.c3p0.max_statement}</prop>    
+				<prop key="hibernate.c3p0.maxPoolSize">${hibernate.c3p0.maxPoolSize}</prop>
+				<prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout}</prop>
+				<prop key="hibernate.c3p0.max_statement">${hibernate.c3p0.max_statement}</prop>
 			</props>
 		</property>
 	</bean>
@@ -48,12 +51,49 @@
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+
+
+	<bean id="personaDAO" class="pe.edu.academico.core.dao.PersonaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	
-	<bean id="customerDao" class="pe.edu.academico.core.dao.CustomerDaoImpl">
+	<bean id="alumnoDAO" class="pe.edu.academico.core.dao.AlumnoDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="personalDAO" class="pe.edu.academico.core.dao.PersonalDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-<!-- 	<bean id="masterDataDao" class="pe.edu.academico.core.dao.MasterDataDaoImpl"> -->
+	<bean id="responsableDAO" class="pe.edu.academico.core.dao.ResponsableDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="nivelDAO" class="pe.edu.academico.core.dao.NivelDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="seccionDAO" class="pe.edu.academico.core.dao.SeccionDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="turnoDAO" class="pe.edu.academico.core.dao.TurnoDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="rolDAO" class="pe.edu.academico.core.dao.RolDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="especialidadDAO" class="pe.edu.academico.core.dao.EspecialidadDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+<!-- 	<bean id="turnoDAO" class="pe.edu.academico.core.dao.TurnoDAOImpl"> -->
+<!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="turnoDAO" class="pe.edu.academico.core.dao.TurnoDAOImpl"> -->
 <!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
 <!-- 	</bean> -->
 
