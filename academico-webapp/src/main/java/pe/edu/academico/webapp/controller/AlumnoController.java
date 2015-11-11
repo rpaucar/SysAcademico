@@ -28,4 +28,11 @@ public class AlumnoController {
 		request.getSession().setAttribute("menuHeader", "alumno");
 		return "alumno/dashboard";
 	}
+	@RequestMapping(value = "alumno/alumnoForm", method = RequestMethod.POST)
+	public String alumnoForm(Model model, HttpServletRequest request) {
+	    
+		//model.addAttribute("listAlumno",alumnoService.findAllAlumno());
+		request.getSession().setAttribute("menuHeader", "alumno");
+		return "alumno/alumnoForm";
+	}
 }

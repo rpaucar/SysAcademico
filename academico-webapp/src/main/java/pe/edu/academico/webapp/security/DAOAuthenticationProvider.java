@@ -82,6 +82,7 @@ public class DAOAuthenticationProvider implements AuthenticationProvider{
 				user.setRoles(roles);
 				user.setUserName("Admin");
 				user.setUserId(1L);
+				System.out.println("username> "+username);
 			}
 
 //			if(username.equals("user") && password.equals("user")){

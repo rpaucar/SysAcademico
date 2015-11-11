@@ -2,6 +2,8 @@
     <decorator name="general" page="general.jsp"> 
         <pattern>/alumno/*</pattern>
         <pattern>/home/*</pattern>
+        <pattern>/anioAcademico/*</pattern>
+        <pattern>/faseAnioAcad/*</pattern>
     </decorator>
 
     <decorator name="popup" page="popup.jsp">

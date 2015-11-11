@@ -41,7 +41,7 @@ contextPath = "<%=request.getContextPath()%>";
 				<nav class="nav">
 					<ul class="nav">
 						<li <c:if test="${menuHeader eq 'home'}"> class="active"</c:if>><a href="<%=request.getContextPath() %>/home/dashboard.html">Home</a></li>
-						<li <c:if test="${menuHeader eq 'alumno'}"> class="active"</c:if>><a href="<%=request.getContextPath() %>/alumno/dashboard.html">Alumno</a></li>
+<%-- 						<li <c:if test="${menuHeader eq 'alumno'}"> class="active"</c:if>><a href="<%=request.getContextPath() %>/alumno/dashboard.html">Alumno</a></li> --%>
 
 <%-- 						<c:forEach items="${user.roles}" var="item"> --%>
 <%-- 							<c:if test="${item eq 'ROLE_ADMIN'}"> --%>

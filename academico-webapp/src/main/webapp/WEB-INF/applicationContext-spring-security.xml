@@ -14,27 +14,24 @@
 	<sec:http entry-point-ref="authenticaionEntryPoint" auto-config="true">
 		
 		<sec:form-login login-page="/login" login-processing-url="/j_spring_security_check"
-			default-target-url="/home/dashboard"
+			default-target-url="/alumno/dashboard"
 			authentication-failure-url="/login?login_error=1"
             always-use-default-target="false"
 		/>
 <!--		<sec:custom-filter ref="logoutFilter" before="LOGOUT_FILTER"/>-->
-        <sec:logout logout-url="/logout" logout-success-url="http://google.com" invalidate-session="true"/>
+        <sec:logout logout-url="/logout" logout-success-url="/" invalidate-session="true"/>
         
 		<sec:intercept-url pattern="/images*" access="IS_AUTHENTICATED_ANONYMOUSLY,IS_AUTHENTICATED_REMEMBERED"/>
 		<sec:intercept-url pattern="/css*" access="IS_AUTHENTICATED_ANONYMOUSLY,IS_AUTHENTICATED_REMEMBERED"/>
 		<sec:intercept-url pattern="/js*" access="IS_AUTHENTICATED_ANONYMOUSLY,IS_AUTHENTICATED_REMEMBERED"/>
+		<sec:intercept-url pattern="/security/**" access="IS_AUTHENTICATED_REMEMBERED"/>
 		<sec:intercept-url pattern="/home/**" access="IS_AUTHENTICATED_REMEMBERED"/>
-		<sec:intercept-url pattern="/alumno/**" access="IS_AUTHENTICATED_REMEMBERED"/>
-		
-<!-- 		<sec:intercept-url pattern="alumno" access="IS_AUTHENTICATED_REMEMBERED"/> -->
-<!-- 		<sec:intercept-url pattern="/voto/**" access="IS_AUTHENTICATED_REMEMBERED"/> -->
-		
+				
 <!--		<sec:intercept-url pattern="/tournament/**" access="IS_AUTHENTICATED_REMEMBERED"/>-->
 		<sec:intercept-url pattern="/j_spring_security_check" access="IS_AUTHENTICATED_ANONYMOUSLY,IS_AUTHENTICATED_REMEMBERED"/>
 		<sec:intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 		<sec:intercept-url pattern="/error" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-		<sec:intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<sec:intercept-url pattern="/alumno" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 		<sec:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 		
 <!--		<sec:session-management invalid-session-url="/login?login_error=2">-->

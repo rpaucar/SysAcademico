@@ -5,7 +5,7 @@
 		<release.version>1.0.0.0</release.version>
 		<spring.version>3.1.0.RELEASE</spring.version>
 		<org.slf4j.version>1.6.1</org.slf4j.version>
-	</properties> 
+	</properties>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>academico-webapp</groupId>
@@ -28,6 +28,9 @@
 			<artifactId>academico-core</artifactId>
 			<version>1.0.0.0-beta</version>
 		</dependency>
+
+
+
 		<dependency>
 			<groupId>com.lowagie</groupId>
 			<artifactId>itext</artifactId>
@@ -69,8 +72,8 @@
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.4</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -99,7 +102,7 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-core</artifactId>
@@ -139,12 +142,6 @@
 			<version>1.1</version>
 		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.activemq</groupId> -->
-		<!-- <artifactId>com.springsource.org.apache.activemq</artifactId> -->
-		<!-- <version>5.3.0</version> -->
-		<!-- <type>jar</type> -->
-		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -198,6 +195,7 @@
 			<version>2.4.2</version>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
@@ -208,6 +206,7 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.7</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-core</artifactId>
@@ -228,10 +227,7 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>3.1</version>
 		</dependency>
-
-
-
-		<!-- Test -->
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

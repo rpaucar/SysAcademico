@@ -4,7 +4,7 @@
 <head>
 <!--	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">-->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>SysAcademico</title>
+	<title>System Election</title>
 	<link rel="icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon" />
 	<%@ include file = "/WEB-INF/jsp/include/include.jsp"%>
 </head>
@@ -14,13 +14,13 @@
 	</header>
 	<div class="container">
 		
-<div class="containerBody">
-		<decorator:body/>
-</div>
-		
-		<footer>
-		<%@ include file = "/WEB-INF/jsp/include/footer.jsp"%>
-		</footer>
+		<div class="containerBody">
+				<decorator:body/>
+		</div>
+				
+				<footer>
+				<%@ include file = "/WEB-INF/jsp/include/footer.jsp"%>
+				</footer>
 	</div>
 	
 </body>

@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-	<display-name>Union Web Application</display-name>
+	<display-name>Academico Application</display-name>
 
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
@@ -39,7 +39,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
@@ -49,8 +48,6 @@
 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
 	</filter>
 
-	<!--Spring Security-->
-	<!-- Filter Mappings -->
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -58,7 +55,6 @@
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 
-	<!-- Default Page Support -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
@@ -66,7 +62,6 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
 
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -89,7 +84,7 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
- 
+
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
