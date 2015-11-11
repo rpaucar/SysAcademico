@@ -41,9 +41,9 @@
 		<property name="fecha_creacion" type="timestamp">
 			<column name="fecha_creacion" length="20" />
 		</property>
-		<property name="fecha_actualizacion" type="timestamp">
-			<column name="fecha_actualizacion" length="20" />
-		</property>
+<!-- 		<property name="fecha_actualizacion" type="timestamp"> -->
+<!-- 			<column name="fecha_actualizacion" length="20" /> -->
+<!-- 		</property> -->
 		
 	</class>
 </hibernate-mapping>

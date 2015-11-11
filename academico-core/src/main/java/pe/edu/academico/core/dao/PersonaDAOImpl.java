@@ -2,7 +2,6 @@ package pe.edu.academico.core.dao;
 
 import java.util.List;
 
-import pe.edu.academico.core.domain.Alumno;
 import pe.edu.academico.core.domain.Persona;
 
 public class PersonaDAOImpl extends BaseDAOHibernate implements PersonaDAO{

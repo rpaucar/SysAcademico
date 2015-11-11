@@ -22,7 +22,6 @@ public class BaseDAOHibernate extends HibernateDaoSupport {
 	
 	public BaseDAOHibernate(){
 	}
-	
 	/**
 	 * When use parameter arrays to limit the search, 
 	 * usually use the 'like' condition. To use this 
@@ -37,14 +36,16 @@ public class BaseDAOHibernate extends HibernateDaoSupport {
 	}
 	
 	public <T> T findById(Class<T> entityClass, Long id) throws DataAccessException {
-		return (T) getHibernateTemplate().get(entityClass, id);
+		return getHibernateTemplate().get(entityClass, id);
 	}
 
 	public void save(BaseEntity entity) throws DataAccessException {
 		Date systemDate = new Date();
+		System.err.println("save metodo "+entity.getId());
 		entity.setDateLastUpdated(systemDate);
 		if (entity.getId() == null || entity.getDateCreated() == null) {
 			entity.setDateCreated(systemDate);
+			System.err.println("save ");
 			getHibernateTemplate().save(entity);
 		}else{
 			try {
@@ -93,9 +94,9 @@ public class BaseDAOHibernate extends HibernateDaoSupport {
 		}
 	}
 	
-	
 	public void saveObject(Object entity) throws DataAccessException {
 		try {
+			
 			getHibernateTemplate().saveOrUpdate(entity);
 		} catch (HibernateSystemException systemExc) {
 			if (systemExc.getRootCause() instanceof NonUniqueObjectException) {
@@ -133,7 +134,7 @@ public class BaseDAOHibernate extends HibernateDaoSupport {
 //		if (logger.isDebugEnabled()){
 //			logger.debug("FIND :: " + queryString);
 //		}
-		return (List<T>) getHibernateTemplate().find(queryString);
+		return getHibernateTemplate().find(queryString);
 	}
 	
 	@SuppressWarnings(value = "unchecked")
@@ -141,7 +142,7 @@ public class BaseDAOHibernate extends HibernateDaoSupport {
 //		if (logger.isDebugEnabled()){
 //			logger.debug("FIND :: " + queryString);
 //		}
-		return (List<T>) getHibernateTemplate().find(queryString, params);
+		return getHibernateTemplate().find(queryString, params);
 	}
 	
 	@SuppressWarnings(value = "unchecked")
@@ -158,7 +159,7 @@ public class BaseDAOHibernate extends HibernateDaoSupport {
 		Session session = getDaoSession();
 		Query query = session.createSQLQuery(queryString).addEntity(entityClass);
 		flushing(session);
-		return (List<T>)query.list();
+		return query.list();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -193,7 +194,7 @@ public class BaseDAOHibernate extends HibernateDaoSupport {
 //		if (logger.isDebugEnabled()){
 //			logger.debug("FIND :: " + queryString);
 //		}
-		return (List<T>) getHibernateTemplate().find(queryString, params);
+		return getHibernateTemplate().find(queryString, params);
 	}
 	
 	public void initialize(Object proxy){

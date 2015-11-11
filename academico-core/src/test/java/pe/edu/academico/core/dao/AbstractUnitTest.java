@@ -2,7 +2,8 @@ package pe.edu.academico.core.dao;
 
 import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests;
 
-public class AbstractUnitTest extends AbstractTransactionalDataSourceSpringContextTests {
+public class AbstractUnitTest extends
+		AbstractTransactionalDataSourceSpringContextTests {
 
 	@Override
 	protected String[] getConfigLocations() {
