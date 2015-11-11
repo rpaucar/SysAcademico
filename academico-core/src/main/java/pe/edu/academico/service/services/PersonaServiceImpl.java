@@ -17,4 +17,8 @@ public class PersonaServiceImpl {
 	public List<Persona> findAllPersona(){
 		return personaDAO.findAllPersona();
 	}
+	
+	public void savePersona(Persona persona) {
+		personaDAO.save(persona);
+	}
 }
