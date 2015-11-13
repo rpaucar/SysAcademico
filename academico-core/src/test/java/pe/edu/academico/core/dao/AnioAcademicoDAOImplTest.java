@@ -30,10 +30,10 @@ public class AnioAcademicoDAOImplTest extends AbstractUnitTest{
 		
 		AnioAcademico anio=new AnioAcademico();
 		FaseAnioAcad fase=new FaseAnioAcad();
-		fase.setId(1L);
+		fase.setId(2L);
 		//aa.setId(1);
 		//anio.setId(2L);
-		anio.setNombre("2015-2");
+		anio.setNombre("2015-3");
 		anio.setFaseAnioAcad(fase);
 		anio.setAnio_escolar("2015");
 		anio.setEstado("1");
@@ -46,6 +46,6 @@ public class AnioAcademicoDAOImplTest extends AbstractUnitTest{
 		}
 		anioAcademicoDAO.saveAnioAcademico(anio);
 		System.out.println("debio guardar ");
-
+		setComplete();
 	}
 }
