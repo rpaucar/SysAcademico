@@ -38,6 +38,7 @@
 <!--	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>-->
 	<script src="<%=request.getContextPath()%>/js/jquery.autocomplete.js"></script>
 	<script src="<%=request.getContextPath()%>/js/google-jquery-ui.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/bootbox.min.js"></script>
 	<link href="<%=request.getContextPath()%>/css/google-jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css"/>
 	<script src="http://connect.facebook.net/en_US/all.js"></script>

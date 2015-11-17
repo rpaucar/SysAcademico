@@ -4,6 +4,7 @@
         <pattern>/home/*</pattern>
         <pattern>/anioAcademico/*</pattern>
         <pattern>/faseAnioAcad/*</pattern>
+         <pattern>/nivel/*</pattern>
     </decorator>
 
     <decorator name="popup" page="popup.jsp">

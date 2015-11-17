@@ -17,6 +17,7 @@
 		<mapping resource="pe/edu/academico/core/domain/Especialidad.hbm.xml" />
 		<mapping resource="pe/edu/academico/core/domain/AnioAcademico.hbm.xml" />
 		<mapping resource="pe/edu/academico/core/domain/FaseAnioAcad.hbm.xml" />
+		<mapping resource="pe/edu/academico/core/domain/AnioAcadDetalle.hbm.xml" />
 <!-- 		<mapping resource="pe/edu/academico/core/domain/Turno.hbm.xml" /> -->
 <!-- 		<mapping resource="pe/edu/academico/core/domain/Turno.hbm.xml" /> -->
 <!-- 		<mapping resource="pe/edu/academico/core/domain/Turno.hbm.xml" /> -->

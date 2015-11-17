@@ -9,7 +9,15 @@ public class Nivel extends BaseEntity implements Serializable {
 	private String nombre;
 	private String estado;
 	private String descripcion;
+	private String numeroNivel;
 	
+	
+	public String getNumeroNivel() {
+		return numeroNivel;
+	}
+	public void setNumeroNivel(String numeroNivel) {
+		this.numeroNivel = numeroNivel;
+	}
 	public String getNombre() {
 		return nombre;
 	}

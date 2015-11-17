@@ -96,6 +96,9 @@
 	<bean id="faseAnioAcadDAO" class="pe.edu.academico.core.dao.FaseAnioAcadDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="anioAcadDetalleDAO" class="pe.edu.academico.core.dao.AnioAcadDetalleDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 <!-- 	<bean id="turnoDAO" class="pe.edu.academico.core.dao.TurnoDAOImpl"> -->
 <!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->

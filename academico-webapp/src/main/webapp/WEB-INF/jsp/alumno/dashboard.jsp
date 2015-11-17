@@ -41,4 +41,4 @@ function deleteAlumno(id) {
 
 <form method="post" action="<%=request.getContextPath()%>/alumno/deleteAlumno" name="alumnoDelete">
 	<input type = "hidden" id="id" name="id"/>
-</form>zzz
+</form>

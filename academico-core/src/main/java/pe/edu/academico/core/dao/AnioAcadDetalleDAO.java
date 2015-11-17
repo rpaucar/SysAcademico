@@ -2,14 +2,14 @@ package pe.edu.academico.core.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-
-import pe.edu.academico.core.domain.AnioAcademico;
+import pe.edu.academico.core.domain.AnioAcadDetalle;
 import pe.edu.academico.core.domain.BaseEntity;
 
-public interface AnioAcademicoDAO {
+public interface AnioAcadDetalleDAO {
 
-	List<AnioAcademico> findAllAnioAcademico();
+	List<AnioAcadDetalle> findAllAnioAcadDetalle();
+	
+	public List<AnioAcadDetalle> findAllAnioAcadDetalleByIdAnioAcademico(String idAnioAcademico);
 	
 	public <T> T findById(Class<T> entityClass, Long id);
 
@@ -22,10 +22,4 @@ public interface AnioAcademicoDAO {
 	public <T> void delete(T entity);
 
 	public void update(BaseEntity entity);
-	
-	public void saveAnioAcademico(AnioAcademico anioAcademico);
-	
-	public void deleteAnioAcademico(AnioAcademico anioAcademico);
-	
-	public AnioAcademico findAnioAcademicoById(Long anioAcademicoId);
 }

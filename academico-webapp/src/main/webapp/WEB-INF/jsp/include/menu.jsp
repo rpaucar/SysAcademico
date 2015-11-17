@@ -9,4 +9,5 @@
 	<li <c:if test="${menuHeader eq 'alumno'}"> class="active"</c:if>><a href="<%=request.getContextPath() %>/alumno/dashboard.html">Alumnos Vitmar</a></li>
 	<li <c:if test="${menuHeader eq 'anioAcademico'}"> class="active"</c:if>><a href="<%=request.getContextPath() %>/anioAcademico/dashboard.html">Año Academico</a></li>
 	<li <c:if test="${menuHeader eq 'faseAnioAcad'}"> class="active"</c:if>><a href="<%=request.getContextPath() %>/faseAnioAcad/dashboard.html">Fase Año Academico</a></li>
+	<li <c:if test="${menuHeader eq 'nivel'}"> class="active"</c:if>><a href="<%=request.getContextPath() %>/nivel/dashboard.html">Niveles</a></li>
 </ul>

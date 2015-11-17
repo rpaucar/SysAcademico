@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/06/2012 10:38:16 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="pe.edu.academico.core.domain.AnioAcadDetalle" table="AnioAcadDetalle">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+<!-- 		<property name="faseId" type="java.lang.Long"> -->
+<!-- 			<column name="faseId"/> -->
+<!-- 		</property> -->		
+	    <many-to-one name="nivel" class="pe.edu.academico.core.domain.Nivel" lazy="false" fetch="select">
+	        <column name="nivelId" />
+	    </many-to-one>
+	    <many-to-one name="anioAcademico" class="pe.edu.academico.core.domain.AnioAcademico" lazy="false" fetch="select">
+	        <column name="anioAcadId" />
+	    </many-to-one>
+	        
+	</class>
+</hibernate-mapping>
